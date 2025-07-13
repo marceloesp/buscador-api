@@ -3,8 +3,8 @@ import requests
 
 app = FastAPI()
 
-# 🔐 Token de acesso obtido via OAuth
-ACCESS_TOKEN = "APP_USR-5240211739855735-071312-434202e65015c56ab9b428faf0eb5600-81574511"
+# 🔐 Token atualizado gerado via OAuth
+ACCESS_TOKEN = "APP_USR-5240211739855735-071313-aa877aed3c1a46f89a8a2cf2536ea352-81574511"
 
 @app.get("/")
 def home():
@@ -40,4 +40,7 @@ def buscar(produto: str = Query(..., description="Nome do produto a buscar")):
 
         return {"resultados": resultados}
     else:
-        return {"erro": f"Erro na busca: {resposta.status_code}"}
+        return {
+            "erro": f"Erro na busca: {resposta.status_code}",
+            "detalhes": resposta.json()
+        }
