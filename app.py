@@ -3,8 +3,8 @@ import requests
 
 app = FastAPI()
 
-# 🔐 Token atualizado gerado via OAuth
-ACCESS_TOKEN = "APP_USR-5240211739855735-071313-aa877aed3c1a46f89a8a2cf2536ea352-81574511"
+# 🔐 Token atualizado via OAuth
+ACCESS_TOKEN = "APP_USR-5240211739855735-071313-62c23aa0446f67a66c8da2ced54ddbc5-81574511"
 
 @app.get("/")
 def home():
@@ -30,12 +30,12 @@ def buscar(produto: str = Query(..., description="Nome do produto a buscar")):
         dados = resposta.json()
         resultados = []
 
-        for item in dados['results']:
+        for item in dados["results"]:
             resultados.append({
-                "nome": item['title'],
+                "nome": item["title"],
                 "preco": f"R$ {item['price']:.2f}",
-                "link": item['permalink'],
-                "imagem": item['thumbnail']
+                "link": item["permalink"],
+                "imagem": item["thumbnail"]
             })
 
         return {"resultados": resultados}
